@@ -1,9 +1,9 @@
 {
   "name": "@spotodo0/strapi-google-auth",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "GoogleAuth helps you to easily create google authentication available for your users. It uses the official google-auth library to execute the actions.",
   "strapi": {
-    "name": "spotodo-strapi-google-auth",
+    "name": "strapi-google-auth",
     "displayName": "GoogleAuth",
     "description": "GoogleAuth helps you to easily create google authentication available for your users. It uses the official google-auth library to execute the actions. You can get it working in under 2 minutes in your application. EASY!",
     "kind": "plugin"
