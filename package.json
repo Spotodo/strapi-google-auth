@@ -12,6 +12,7 @@
     "@strapi/strapi": "^4.1"
   },
   "dependencies": {
+    "@strapi/plugin-users-permissions": "^4.3.4",
     "google-auth-library": "^8.0.2",
     "googleapis": "^100.0.0"
   },
