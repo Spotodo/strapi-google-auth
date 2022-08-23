@@ -173,6 +173,22 @@ module.exports = ({ strapi }) => ({
                 provider: "local",
               },
             });
+
+          await strapi
+            .plugin("email")
+            .service("email")
+            .send({
+              from: "info@spotodo.de",
+              replyTo: "info@spotodo.de",
+              subject: "",
+              to: newUser.email,
+              template_id: "d-fab3ccbc6b774efda38424a3059ea197",
+              dynamic_template_data: {
+                firstName: name,
+                url: `${strapi.config.server.frontend_url}/login`,
+              },
+            });
+
           return resolve({
             data: {
               token: getService("jwt").issue({ id: newUser.id }),
