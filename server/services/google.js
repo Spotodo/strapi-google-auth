@@ -150,6 +150,14 @@ module.exports = ({ strapi }) => ({
         const user = await strapi.db
           .query("plugin::users-permissions.user")
           .findOne({ where: { email } });
+
+        if (user && !user.confirmed) {
+          await strapi.db.query("plugin::users-permissions.user").update({
+            where: { id: user.id },
+            data: { confirmed: true },
+          });
+        }
+
         if (!user) {
           let randomPass = this.makeRandomPassword(10);
           let password = await strapi
@@ -160,12 +168,13 @@ module.exports = ({ strapi }) => ({
             .create({
               data: {
                 username: name,
+                firstName: name,
                 email,
                 password,
                 confirmed: true,
                 blocked: false,
                 role: 1,
-                provider: "local",
+                provider: "google",
               },
             });
 
@@ -191,6 +200,7 @@ module.exports = ({ strapi }) => ({
             },
           });
         }
+
         resolve({
           data: {
             token: getService("jwt").issue({ id: user.id }),
