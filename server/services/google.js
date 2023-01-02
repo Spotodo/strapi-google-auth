@@ -114,7 +114,7 @@ module.exports = ({ strapi }) => ({
     });
   },
 
-  getUserProfile(code) {
+  getUserProfile(idToken) {
     return new Promise(async (resolve, reject) => {
       try {
         let credentials = await this.getGoogleCredentials();
@@ -140,16 +140,9 @@ module.exports = ({ strapi }) => ({
           return reject({ error: true, message: "Missing credentials" });
         }
 
-        const oAuthClient = this.createConnection(
-          google_client_id,
-          google_client_secret,
-          google_redirect_url
-        );
-        const tokens = await oAuthClient.getToken(code);
-        const { id_token } = tokens.tokens;
         const client = new OAuth2Client(google_client_id);
         const ticket = await client.verifyIdToken({
-          idToken: id_token,
+          idToken,
           audience: google_client_id,
         });
         const payload = ticket.getPayload();
