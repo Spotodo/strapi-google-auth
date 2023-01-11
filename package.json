@@ -1,6 +1,6 @@
 {
   "name": "@spotodo0/strapi-google-auth",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "GoogleAuth helps you to easily create google authentication available for your users. It uses the official google-auth library to execute the actions.",
   "strapi": {
     "name": "strapi-google-auth",
@@ -25,7 +25,7 @@
     }
   ],
   "engines": {
-    "node": ">=18",
+   "node": ">=14.x.x <=16.x.x",
     "npm": ">=6.0.0"
   },
   "license": "MIT",
